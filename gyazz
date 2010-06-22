@@ -21,7 +21,7 @@ end
 
 if !cmd or cmd =~ /^-+h/ or cmd == 'help'
   if params.size < 1
-    puts 'commands'
+    puts 'commands:'
     cmds.each{|c|
       puts ' -'+c.scan(/([^\/]+)\.rb/i).first.to_s
     }

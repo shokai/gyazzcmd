@@ -16,8 +16,9 @@ end
 
 def help
 <<EOS
-gyazz getdata "NAME" "TITLE" "VERSION"
-gyazz getdata "shokai" "test" 3
+get data
+ % gyazz getdata "NAME" "TITLE" "VERSION"
+ % gyazz getdata "shokai" "test" 3
 EOS
 end
 
