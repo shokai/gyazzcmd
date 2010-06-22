@@ -6,15 +6,17 @@ use [gyazz](http://gyazz.com) on CUI
 Install
 =======
 
-     % git clone git://github.com/shokai/gyazzcmd.git
+    % git clone git://github.com/shokai/gyazzcmd.git
 
 
 Use
 ===
 
-     % gyazz
-     % gyazz search "hashimoto" "shokai"
-     % gyazz getdata "shokai" "test" 3
+    % gyazz
+
+    % gyazz search "hashimoto" "shokai"
+
+    % gyazz getdata "shokai" "test" 3
 
 
 Make plugins
