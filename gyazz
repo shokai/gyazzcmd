@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+# -*- coding: utf-8 -*-
+require 'rubygems'
+require 'ArgsParser'
+
+cmd = ARGV.shift
+params = ARGV
+cmds = Dir.glob(File.dirname(__FILE__)+'/cmds/*.rb')
+
+def matched_cmd(cmd)
+  cmds = Dir.glob(File.dirname(__FILE__)+'/cmds/*.rb')
+  match_full = /\/(#{cmd})\.rb/i
+  for c in cmds do
+    return c.scan(match_full).first, c if c =~ match_full
+  end
+  match_head = /\/(#{cmd}.*)\.rb/i
+  for c in cmds do
+    return c.scan(match_head).first, c if c =~ match_head
+  end
+end
+
+if !cmd or cmd =~ /^-+h/ or cmd == 'help'
+  if params.size < 1
+    puts 'commands'
+    cmds.each{|c|
+      puts ' -'+c.scan(/([^\/]+)\.rb/i).first.to_s
+    }
+  else
+    c, path = matched_cmd(params.first)
+    require path
+    puts help
+  end
+  exit
+end
+
+cmd, path = matched_cmd(cmd)
+require path
+run(params)
+
