@@ -1,12 +1,23 @@
 
 def run(params)
-  puts "http://gyazz.com/programs/getdata.cgi?name=%E5%A2%97%E4%BA%95%E7%A0%94&title=%E3%82%B5%E3%83%96%E3%82%BC%E3%83%9F/%E9%9B%BB%E5%AD%90%E5%B7%A5%E4%BD%9C&version=2"
+  require 'open-uri'
+  require 'kconv'
+  require 'uri'
+  name, title, version = params
+  version = 1 if !version
+  data = open(URI.encode "http://gyazz.com/programs/getdata.cgi?name=#{name}&title=#{title}&version=#{version}").read.toutf8
+  lines = data.split(/[\r\n]/)
+  lines.shift
+  lines.shift
+  for line in lines do
+    puts line.scan(/(.+) [0-9]+/).first
+  end
 end
 
 def help
 <<EOS
-getdata [URL] [VERSION]
-getdata "http://gyazz.com/shokai/test" 3
+gyazz getdata "NAME" "TITLE" "VERSION"
+gyazz getdata "shokai" "test" 3
 EOS
 end
 
