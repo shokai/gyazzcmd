@@ -3,7 +3,8 @@ def run(params)
   require 'open-uri'
   require 'kconv'
   require 'uri'
-  name, title, version = params
+  puts help if params.size < 2
+  title, name, version = params
   version = 1 if !version
   data = open(URI.encode "http://gyazz.com/programs/getdata.cgi?name=#{name}&title=#{title}&version=#{version}").read.toutf8
   lines = data.split(/[\r\n]/)
@@ -17,8 +18,9 @@ end
 def help
 <<EOS
 get data
- % gyazz getdata "NAME" "TITLE" "VERSION"
- % gyazz getdata "shokai" "test" 3
+ % gyazz getdata "TITLE" "NAME" "VERSION"
+ % gyazz getdata "TITLE" "NAME"
+ % gyazz getdata "test" "shokai" 2
 EOS
 end
 
