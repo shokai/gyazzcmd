@@ -13,9 +13,7 @@ Use
 ===
 
     % gyazz
-
     % gyazz search "hashimoto" "shokai"
-
     % gyazz getdata "shokai" "test" 3
 
 
